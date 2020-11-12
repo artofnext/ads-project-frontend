@@ -1,6 +1,9 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <ul class="var-list">
+      <ListItem/>
+    </ul>
     <p>Counter: {{ counter }}</p>
     <input v-model="counter">
     <button @click="increment">Up</button>
@@ -9,8 +12,14 @@
 </template>
 
 <script>
+// @ is an alias to /src
+import ListItem from "@/components/ListItem.vue";
+
 export default {
   name: "HelloWorld",
+  components: {
+    ListItem
+  },
   computed: {
 
     counter: {
@@ -42,6 +51,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+.var-list {
+  margin: 20px auto;
+  max-width: 1000px;
+  width: 80%;
+}
+
 h3 {
   margin: 40px 0 0;
 }
