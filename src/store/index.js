@@ -36,6 +36,11 @@ export default new Vuex.Store({
         index: 3,
       },
     ],
+    dataTypes: [
+      'Str',
+      'Int',
+      'Bool',
+    ],
   },
   mutations: {
     addVar (state) {

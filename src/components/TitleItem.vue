@@ -5,6 +5,7 @@
       <th>Variable Type</th>
       <th>From</th>
       <th>To</th>
+      <th>Del</th>
   </tr>
 </template>
 
@@ -25,8 +26,8 @@ export default {
     }
 
     th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 10px;
-}
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 10px;
+    }
 </style>
