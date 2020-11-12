@@ -2,7 +2,8 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <ul class="var-list">
-      <ListItem/>
+      <ListItem v-for="item in items" :key="item.index"/>
+      <AddItem/>
     </ul>
     <p>Counter: {{ counter }}</p>
     <input v-model="counter">
@@ -14,14 +15,15 @@
 <script>
 // @ is an alias to /src
 import ListItem from "@/components/ListItem.vue";
+import AddItem from "@/components/AddItem.vue";
 
 export default {
   name: "HelloWorld",
   components: {
-    ListItem
+    ListItem,
+    AddItem,
   },
   computed: {
-
     counter: {
       get () {
         return this.$store.state.count
@@ -30,10 +32,16 @@ export default {
         this.$store.commit('updateCount', value);
         console.log(this.$store.state.count);
       }
+    },
+    items: {
+      get () {
+        return this.$store.state.datas;
+      }
     }
   },
   props: {
     msg: String,
+
     // counter: this.$store.state.count
   },
   methods: {
@@ -55,6 +63,7 @@ export default {
   margin: 20px auto;
   max-width: 1000px;
   width: 80%;
+  text-align: initial;
 }
 
 h3 {
