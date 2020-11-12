@@ -1,5 +1,5 @@
 <template>
-  <tr class="list-item">
+  <tr @click="activateElement" class="list-item">
       <td>{{ datas.index + 1 }}</td>
       <td><input v-model="datas.name" class="name-input"></td>
       <td>
@@ -32,6 +32,9 @@ export default {
     deleteItem() {
       this.$store.commit('removeVar', this.datas.index);
       console.log(this.$store.state.count);
+    },
+    activateElement() {
+        this.$store.commit('updateActiveElement', this.datas.index);
     }
   }
 };
@@ -43,6 +46,9 @@ export default {
         // display: block;
         // border: solid 1px black;
         // padding: 10px;
+        &:hover {
+            box-shadow: 0px 0px 10px #999;
+        }
     }
 
     td {

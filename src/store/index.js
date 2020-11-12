@@ -3,9 +3,12 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
+const devMode = true;
+
 export default new Vuex.Store({
   state: {
     count: 0,
+    // mocked object
     datas: [
       {
         name: 'Alpha',
@@ -41,6 +44,7 @@ export default new Vuex.Store({
       'Int',
       'Bool',
     ],
+    activeElement: NaN
   },
   mutations: {
     addVar (state) {
@@ -48,10 +52,17 @@ export default new Vuex.Store({
       state.datas.push({
         index: state.datas.length,
       });
+      if (devMode) console.log('New element added');
     },
     removeVar (state, index) {
       //TODO
       state.datas.splice(index, 1);
+      if (devMode) console.log('Element ' + index + ' deleted');
+    },
+
+    updateActiveElement (state, index) {
+      state.activeElement = index;
+      if (devMode) console.log('Active Element: ' + index);
     },
 
     updateCount (state, value) {
