@@ -1,7 +1,7 @@
 <template>
-  <li class="add-list-item">
+  <tr class="add-list-item">
       <button @click="addItem" class="add-button">+</button> Add
-  </li>
+  </tr>
 </template>
 
 <script>
@@ -26,9 +26,9 @@ export default {
 <style scoped lang="scss">
 
     .add-list-item {
-        display: block;
-        border: solid 1px black;
-        padding: 6px 10px;
+        // display: block;
+        // border: solid 1px black;
+        // padding: 6px 10px;
     }
 
     .add-button {

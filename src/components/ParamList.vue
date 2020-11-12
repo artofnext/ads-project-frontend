@@ -1,10 +1,11 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <ul class="var-list">
-      <ListItem v-for="item in items" :key="item.index"/>
+    <table class="var-list">
+      <TitleItem/>
+      <ListItem  v-for="item in items" v-bind:key="item.index" v-bind:datas='item'/>
       <AddItem/>
-    </ul>
+    </table>
     <p>Counter: {{ counter }}</p>
     <input v-model="counter">
     <button @click="increment">Up</button>
@@ -16,12 +17,14 @@
 // @ is an alias to /src
 import ListItem from "@/components/ListItem.vue";
 import AddItem from "@/components/AddItem.vue";
+import TitleItem from "@/components/TitleItem.vue";
 
 export default {
   name: "HelloWorld",
   components: {
     ListItem,
     AddItem,
+    TitleItem,
   },
   computed: {
     counter: {
@@ -39,9 +42,11 @@ export default {
       }
     }
   },
+
+
+
   props: {
     msg: String,
-
     // counter: this.$store.state.count
   },
   methods: {
@@ -64,6 +69,16 @@ export default {
   max-width: 1000px;
   width: 80%;
   text-align: initial;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  // width: 100%;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
 }
 
 h3 {

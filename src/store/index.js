@@ -12,24 +12,28 @@ export default new Vuex.Store({
         type: 'int',
         from: 0,
         to: 1000,
+        index: 0,
       },
       {
         name: 'Beta',
         type: 'int',
         from: 0,
         to: 1000,
+        index: 1,
       },
       {
         name: 'Gamma',
         type: 'int',
         from: 0,
         to: 1000,
+        index: 2,
       },
       {
         name: 'Epsilon',
         type: 'int',
         from: 0,
         to: 1000,
+        index: 3,
       },
     ],
   },
@@ -37,8 +41,7 @@ export default new Vuex.Store({
     addVar (state) {
       //TODO
       state.datas.push({
-        obj: 'obj',
-        index: 1,
+        index: state.datas.length,
       });
     },
     removeVar (state, index) {
