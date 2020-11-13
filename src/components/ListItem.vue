@@ -3,7 +3,7 @@
       <td>{{ index + 1 }}</td>
       <td><input placeholder="Type var name here" v-model="dataObj.name" class="name-input"></td>
       <td>
-            <select name="dataType" id="dataType">
+            <select v-model="dataObj.type" name="dataType" id="dataType">
                 <option v-for="type in dataTypes" v-bind:key="type"  v-bind:value="type">{{ type }}</option>
             </select>
           <!-- <input v-model="dataObj.type" class="type-input"> -->

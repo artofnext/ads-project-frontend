@@ -9,11 +9,11 @@
     <div class="container inline">
       <div class="inline-element">
         <label for="uri-input">Endpoint URI</label>
-        <input type="text" name="uri-input" id="uri-input">
+        <input v-model="endpoint" type="text" name="uri-input" id="uri-input">
       </div>
       <div class="inline-element">
         <label for="iteration-input">Number of iterations</label>
-        <input type="number" name="iteration-input" id="iteration-input" min="1" max="99999999">
+        <input v-model="iterations" type="number" name="iteration-input" id="iteration-input" min="1" max="99999999">
       </div>
       <div class="inline-element">
         <button class="submit-button">Submit</button>
@@ -44,9 +44,28 @@ export default {
     TitleItem,
   },
   computed: {
+    endpoint: {
+      get () {
+        return this.$store.state.endpoint;
+      },
+      set (value) {
+        this.$store.commit('updateEndpoint', value);
+        console.log(this.$store.state.endpoint);
+      }
+    },
+    iterations: {
+      get () {
+        return this.$store.state.iterations;
+      },
+      set (value) {
+        this.$store.commit('updateIterations', value);
+        console.log(this.$store.state.iterations);
+      }
+    },
+    
     counter: {
       get () {
-        return this.$store.state.count
+        return this.$store.state.count;
       },
       set (value) {
         this.$store.commit('updateCount', value);

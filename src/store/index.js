@@ -12,21 +12,21 @@ export default new Vuex.Store({
     datas: [
       {
         name: 'Alpha',
-        type: 'int',
+        type: 'Int',
         from: 0,
         to: 1000,
         index: 0,
       },
       {
         name: 'Beta',
-        type: 'int',
+        type: 'Int',
         from: 0,
         to: 1000,
         index: 1,
       },
       {
         name: 'Gamma',
-        type: 'int',
+        type: 'Bool',
         from: 0,
         to: 1000,
         index: 2,
@@ -44,7 +44,9 @@ export default new Vuex.Store({
       'Int',
       'Bool',
     ],
-    activeElement: NaN
+    activeElement: NaN,
+    endpoint: '',
+    iterations: 0,
   },
   mutations: {
     addVar (state) {
@@ -68,6 +70,16 @@ export default new Vuex.Store({
     updateActiveElement (state, index) {
       state.activeElement = index;
       if (devMode) console.log('Active Element: ' + index);
+    },
+
+    updateEndpoint (state, value) {
+      state.endpoint = value;
+      if (devMode) console.log('Endpoint Uri updated: ' + value);
+    },
+
+    updateIterations (state, value) {
+      state.iterations = value;
+      if (devMode) console.log('Iterations updated: ' + value);
     },
 
     updateCount (state, value) {
