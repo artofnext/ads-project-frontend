@@ -21,7 +21,7 @@ export default {
         // display: block;
         // border: solid 1px black;
         // padding: 10px;
-        background-color: #8B8B8B;
+        background-color: #8B8B8B !important;
         color: white;
     }
 

@@ -1,15 +1,15 @@
 <template>
   <tr @click="activateElement" class="list-item">
-      <td>{{ datas.index + 1 }}</td>
-      <td><input v-model="datas.name" class="name-input"></td>
+      <td>{{ index + 1 }}</td>
+      <td><input placeholder="Type var name here" v-model="dataObj.name" class="name-input"></td>
       <td>
             <select name="dataType" id="dataType">
                 <option v-for="type in dataTypes" v-bind:key="type"  v-bind:value="type">{{ type }}</option>
             </select>
-          <!-- <input v-model="datas.type" class="type-input"> -->
+          <!-- <input v-model="dataObj.type" class="type-input"> -->
         </td>
-      <td><input v-model="datas.from" class="from-input"></td>
-      <td><input v-model="datas.to" class="to-input"></td>
+      <td><input v-model="dataObj.from" class="from-input"></td>
+      <td><input v-model="dataObj.to" class="to-input"></td>
       <td><button @click="deleteItem" class="delete-button">x</button></td>
 
   </tr>
@@ -19,22 +19,32 @@
 export default {
   name: "ListItem",
   computed: {
+      dataObj: {
+        get () {
+          return this.$store.state.datas[this.index];
+        },
+      },
       dataTypes: {
-      get () {
-        return this.$store.state.dataTypes;
-      }
+        get () {
+          return this.$store.state.dataTypes;
+      },
+      activeElement: {
+        get () {
+          return this.$store.state.activeElement
+        }
+      },
     }
   },
   props: {
-      datas: Object
+      index: Number
   },
   methods: {
     deleteItem() {
-      this.$store.commit('removeVar', this.datas.index);
+      this.$store.commit('removeVar', this.index);
       console.log(this.$store.state.count);
     },
     activateElement() {
-        this.$store.commit('updateActiveElement', this.datas.index);
+        this.$store.commit('updateActiveElement', this.index);
     }
   }
 };
@@ -46,9 +56,6 @@ export default {
         // display: block;
         // border: solid 1px black;
         // padding: 10px;
-        &:hover {
-            box-shadow: 0px 0px 10px #999;
-        }
     }
 
     td {

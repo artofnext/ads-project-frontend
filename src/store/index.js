@@ -50,8 +50,13 @@ export default new Vuex.Store({
     addVar (state) {
       //TODO
       state.datas.push({
+        name: '',
+        type: '',
+        from: 0,
+        to: 10,
         index: state.datas.length,
       });
+      state.activeElement = state.datas.length - 1;
       if (devMode) console.log('New element added');
     },
     removeVar (state, index) {

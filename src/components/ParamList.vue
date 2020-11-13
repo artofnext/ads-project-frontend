@@ -3,7 +3,7 @@
     <h1>{{ msg }}</h1>
     <table class="var-list">
       <TitleItem/>
-      <ListItem  v-for="item in items" v-bind:key="item.index" v-bind:datas='item'/>
+      <ListItem  v-for="(item, index) in items" v-bind:key="index" v-bind:index='index'/>
       <AddItem/>
     </table>
     <p>Counter: {{ counter }}</p>
@@ -20,7 +20,7 @@ import AddItem from "@/components/AddItem.vue";
 import TitleItem from "@/components/TitleItem.vue";
 
 export default {
-  name: "HelloWorld",
+  name: "ParamList",
   components: {
     ListItem,
     AddItem,
