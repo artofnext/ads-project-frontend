@@ -1,15 +1,32 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <table class="var-list">
+    <table class="container">
       <TitleItem/>
       <ListItem  v-for="(item, index) in items" v-bind:key="index" v-bind:index='index'/>
       <AddItem/>
     </table>
+    <div class="container inline">
+      <div class="inline-element">
+        <label for="uri-input">Endpoint URI</label>
+        <input type="text" name="uri-input" id="uri-input">
+      </div>
+      <div class="inline-element">
+        <label for="iteration-input">Number of iterations</label>
+        <input type="number" name="iteration-input" id="iteration-input" min="1" max="99999999">
+      </div>
+      <div class="inline-element">
+        <button class="submit-button">Submit</button>
+      </div>
+    </div>
+
+    <!-- TODO delete! -->
     <p>Counter: {{ counter }}</p>
     <input v-model="counter">
     <button @click="increment">Up</button>
     <button @click="decrement">Down</button>
+
+
   </div>
 </template>
 
@@ -43,8 +60,6 @@ export default {
     }
   },
 
-
-
   props: {
     msg: String,
     // counter: this.$store.state.count
@@ -64,11 +79,46 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.var-list {
+.container {
   margin: 20px auto;
   max-width: 1000px;
   width: 80%;
   text-align: initial;
+}
+
+.inline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &-element {
+    // margin: 10px;
+  }
+}
+
+.submit-button {
+  width: 70px;
+  padding: 5px 10px;
+  background-color: white;
+  color: #B10000;
+  border: solid 1px #B10000;
+  border-radius: 5px;
+  outline: none;
+  transition: all .2s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 0 5px #B10000;
+  }
+
+  &:active {
+    background-color: #B10000;
+    color: white;
+  }
+}
+
+input {
+  padding: 5px 10px;
+  margin: 0 5px;
 }
 
 table {
