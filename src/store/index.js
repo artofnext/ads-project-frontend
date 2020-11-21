@@ -10,7 +10,6 @@ const devMode = true;
 
 export default new Vuex.Store({
   state: {
-    count: 0,
     // mocked object
     datas: [
       {
@@ -75,6 +74,7 @@ export default new Vuex.Store({
     avaitStatus: false,
   },
   getters: {
+    // todo validate and add all data to sending object
     getDatas: state => {
       return state.datas;
     }
@@ -120,16 +120,6 @@ export default new Vuex.Store({
     setAvaitStatus (state, status) {
       state.avaitStatus = status;
     },
-
-    updateCount (state, value) {
-      state.count = value;
-    },
-    increment (state) {
-      state.count++;
-    },
-    decrement (state) {
-      state.count--;
-    }
   },
   actions: {
 

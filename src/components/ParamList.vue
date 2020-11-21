@@ -19,14 +19,6 @@
         <button @click="submitData" class="submit-button">Submit</button>
       </div>
     </div>
-
-    <!-- TODO delete! -->
-    <p>Counter: {{ counter }}</p>
-    <input v-model="counter">
-    <button @click="increment">Up</button>
-    <button @click="decrement">Down</button>
-
-
   </div>
 </template>
 
@@ -88,15 +80,6 @@ export default {
       this.$router.push('Result');
       this.$store.dispatch('submitData');
     },
-
-    increment() {
-      this.$store.commit('increment');
-      console.log(this.$store.state.count);
-    },
-    decrement() {
-      this.$store.commit('decrement');
-      console.log(this.$store.state.count);
-    }
   }
 };
 </script>
