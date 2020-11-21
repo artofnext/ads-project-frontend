@@ -85,6 +85,7 @@ export default {
   },
   methods: {
     submitData() {
+      this.$router.push('Result');
       this.$store.dispatch('submitData');
     },
 

@@ -1,8 +1,12 @@
 <template>
   <tr class="list-item">
-      <td>{{ name }}</td>
-      <td>{{ value }} <span v-if="file"><a>{{ filelink }}</a></span></td>
-      
+    <td>{{ dataObj.name }}</td>
+    <td>
+      {{ dataObj.value }}
+      <span v-if="dataObj.filelink">
+        <a class="download-button" v-bind:href="dataObj.filelink">&darr;</a>
+      </span>
+    </td>
   </tr>
 </template>
 
@@ -10,60 +14,53 @@
 export default {
   name: "ListItem",
   computed: {
-      dataObj: {
-        // Bad practice: mutate object by reference
-        get () {
-          return this.$store.state.pesponseObj[this.index];
-        },
+    dataObj: {
+      // Bad practice: mutate object by reference
+      get() {
+        return this.$store.state.responseObj[this.index];
       },
-      dataTypes: {
-        get () {
-          return this.$store.state.dataTypes;
-      },
-      activeElement: {
-        get () {
-          return this.$store.state.activeElement
-        }
-      },
-    }
+    },
   },
   props: {
-      index: Number
+    index: Number,
   },
-  methods: {
-
-  }
+  methods: {},
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-    .list-item {
-        // display: block;
-        // border: solid 1px black;
-        // padding: 10px;
-    }
+.list-item {
+  // display: block;
+  // border: solid 1px black;
+  // padding: 10px;
+}
 
-    td {
+td {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 10px;
+
+  &:nth-child(even) {
+    color: #b10000;
+  }
 }
 
-.delete-button {
-    background-color: white;
-    border: solid 1px #e64f4f;
-    border-radius: 50px;
-    padding: 3px 8px;
-    display: inline-block;
-    outline: none;
-    transition: all .3s ease-in-out;
-    color: #e64f4f;
-    &:hover {
-        box-shadow: 0 0 5px #e64f4f;
-    }
-    &:active {
-        box-shadow: none;
-    }
+.download-button {
+  background-color: white;
+  border: solid 1px #b10000;
+  border-radius: 5px;
+  padding: 3px 8px;
+  display: inline-block;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+  color: #b10000;
+  margin: 0 5px;
+  &:hover {
+    box-shadow: 0 0 5px #b10000;
+  }
+  &:active {
+    box-shadow: none;
+  }
 }
 </style>

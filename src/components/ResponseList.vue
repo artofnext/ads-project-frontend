@@ -2,13 +2,12 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <table class="container">
-      <TitleItem/>
       <ResultListItem  v-for="(item, index) in items" v-bind:key="index" v-bind:index='index'/>
     </table>
     <div class="container inline">
 
       <div class="inline-element">
-        <button @click="submitData" class="submit-button">Back</button>
+            <router-link class="submit-button" to="/">Back</router-link>
       </div>
     </div>
 
@@ -18,14 +17,12 @@
 
 <script>
 // @ is an alias to /src
-import ResultListItem from "@/components/ListItem.vue";
-import TitleItem from "@/components/TitleItem.vue";
+import ResultListItem from "@/components/ResultListItem.vue";
 
 export default {
   name: "ResultList",
   components: {
     ResultListItem,
-    TitleItem,
   },
   computed: {   
     items: {
@@ -56,11 +53,12 @@ export default {
 
 .inline {
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
   align-items: center;
 
   &-element {
     // margin: 10px;
+    justify-self: end;
   }
 }
 
@@ -68,18 +66,19 @@ export default {
   width: 70px;
   padding: 5px 10px;
   background-color: white;
-  color: #B10000;
-  border: solid 1px #B10000;
+  color: #222222;
+  border: solid 1px #222222;
   border-radius: 5px;
   outline: none;
   transition: all .2s ease-in-out;
+  text-decoration: none;
 
   &:hover {
-    box-shadow: 0 0 5px #B10000;
+    box-shadow: 0 0 5px #222222;
   }
 
   &:active {
-    background-color: #B10000;
+    background-color: #222222;
     color: white;
   }
 }
