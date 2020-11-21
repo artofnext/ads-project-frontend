@@ -74,6 +74,11 @@ export default new Vuex.Store({
     iterations: 0,
     avaitStatus: false,
   },
+  getters: {
+    getDatas: state => {
+      return state.datas;
+    }
+  },
   mutations: {
     addVar (state) {
       //TODO
@@ -112,6 +117,10 @@ export default new Vuex.Store({
       state.responseObj = items
     },
 
+    setAvaitStatus (state, status) {
+      state.avaitStatus = status;
+    },
+
     updateCount (state, value) {
       state.count = value;
     },
@@ -125,20 +134,27 @@ export default new Vuex.Store({
   actions: {
 
     // todo
-    submitData ({ commit }) {
+    submitData ({ commit, getters }) {
       console.log("submitData action called");
-
-      // axios
-      //     .get("Your API link", {
-      //         headers: {
-      //             "Ocp-Apim-Subscription-Key": "your key",
-      //         }
-      //     })
-      //     .then(response => response.data)
-      //     .then(items => {
-      //         console.log(items);
-      //     commit("SET_Items", items)
-      // })
+      commit("setAvaitStatus", true);
+      axios
+          .post("Your API link", getters.getDatas)
+          .then(response => response.data)
+          .then(items => {
+            console.log(items);
+            commit("SET_Items", items);
+            commit("setAvaitStatus", false);
+          })
+          .catch(() => {
+            console.log("Error");
+            commit("SET_Items", [
+              {
+                name: "Unexpected error"
+              }
+            ]);
+            commit("setAvaitStatus", false);
+          });
+      
     }
   },
   modules: {}
