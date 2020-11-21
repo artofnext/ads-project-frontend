@@ -39,6 +39,28 @@ export default new Vuex.Store({
         index: 3,
       },
     ],
+    // mocked object
+    responseObj: [
+      {
+        name: 'Running Algorithm',
+        value: 'NSGA2'
+      },
+      {
+        name: 'Problem',
+        value: 'KURSAWE'
+      },
+      {
+        name: 'Runs',
+        value: '2'
+      },
+      {
+        name: 'Run file',
+        value: 'FUN2.TSV',
+        filelink: 'https....FUN2.TSV',
+      },
+
+
+    ],
     dataTypes: [
       'Str',
       'Int',
@@ -92,6 +114,22 @@ export default new Vuex.Store({
       state.count--;
     }
   },
-  actions: {},
+  actions: {
+
+    // todo
+    submitData ({ commit }) {
+      axios
+          .get('Your API link', {
+              headers: {
+                  'Ocp-Apim-Subscription-Key': 'your key',
+              }
+          })
+          .then(response => response.data)
+          .then(items => {
+              console.log(items);
+          commit('SET_Items', items)
+      })
+  }
+  },
   modules: {}
 });

@@ -1,17 +1,8 @@
 <template>
-  <tr @click="activateElement" class="list-item">
-      <td>{{ index + 1 }}</td>
-      <td><input placeholder="Type var name here" v-model="dataObj.name" class="name-input"></td>
-      <td>
-            <select v-model="dataObj.type" name="dataType" id="dataType">
-                <option v-for="type in dataTypes" v-bind:key="type"  v-bind:value="type">{{ type }}</option>
-            </select>
-          <!-- <input v-model="dataObj.type" class="type-input"> -->
-        </td>
-      <td><input v-model="dataObj.from" class="from-input"></td>
-      <td><input v-model="dataObj.to" class="to-input"></td>
-      <td><button @click="deleteItem" class="delete-button">x</button></td>
-
+  <tr class="list-item">
+      <td>{{ name }}</td>
+      <td>{{ value }} <span v-if="file"><a>{{ filelink }}</a></span></td>
+      
   </tr>
 </template>
 
@@ -22,7 +13,7 @@ export default {
       dataObj: {
         // Bad practice: mutate object by reference
         get () {
-          return this.$store.state.datas[this.index];
+          return this.$store.state.pesponseObj[this.index];
         },
       },
       dataTypes: {
@@ -40,13 +31,7 @@ export default {
       index: Number
   },
   methods: {
-    deleteItem() {
-      this.$store.commit('removeVar', this.index);
-      console.log(this.$store.state.count);
-    },
-    activateElement() {
-        this.$store.commit('updateActiveElement', this.index);
-    }
+
   }
 };
 </script>

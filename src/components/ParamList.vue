@@ -16,7 +16,7 @@
         <input v-model="iterations" type="number" name="iteration-input" id="iteration-input" min="1" max="99999999">
       </div>
       <div class="inline-element">
-        <button class="submit-button">Submit</button>
+        <button @click="submitData" class="submit-button">Submit</button>
       </div>
     </div>
 
@@ -84,6 +84,10 @@ export default {
     // counter: this.$store.state.count
   },
   methods: {
+    submitData() {
+      this.$store.dispatch('submitData');
+    },
+
     increment() {
       this.$store.commit('increment');
       console.log(this.$store.state.count);
