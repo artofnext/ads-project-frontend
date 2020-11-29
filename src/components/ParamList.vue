@@ -9,10 +9,10 @@
     <div class="container inline">
       <!-- todo insert evaluation module -->
       <EvaluationModule/>
-      <div class="inline-element">
+      <!-- <div class="inline-element">
         <label for="uri-input">Endpoint URI</label>
         <input v-model="endpoint" type="text" name="uri-input" id="uri-input">
-      </div>
+      </div> -->
       
       <div class="inline-element">
         <label for="iteration-input">Number of iterations</label>
@@ -41,15 +41,15 @@ export default {
     EvaluationModule,
   },
   computed: {
-    endpoint: {
-      get () {
-        return this.$store.state.endpoint;
-      },
-      set (value) {
-        this.$store.commit('updateEndpoint', value);
-        console.log(this.$store.state.endpoint);
-      }
-    },
+    // endpoint: {
+    //   get () {
+    //     return this.$store.state.endpoint;
+    //   },
+    //   set (value) {
+    //     this.$store.commit('updateEndpoint', value);
+    //     console.log(this.$store.state.endpoint);
+    //   }
+    // },
     iterations: {
       get () {
         return this.$store.state.iterations;
@@ -158,7 +158,5 @@ li {
   display: inline-block;
   margin: 0 10px;
 }
-a {
-  color: #42b983;
-}
+
 </style>

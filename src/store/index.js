@@ -64,9 +64,8 @@ export default new Vuex.Store({
 
     ],
     dataTypes: [
-      "Str",
+      "Double",
       "Int",
-      "Bool",
     ],
     activeElement: NaN,
     endpoint: "",
