@@ -122,13 +122,18 @@ export default new Vuex.Store({
     },
   },
   actions: {
-
+    
+    
+    submitData1 ({ commit }) {
+      //commit("SET_Items", this.responseObj);
+      commit("setAvaitStatus", false);
+    },
     // todo
     submitData ({ commit, getters }) {
       console.log("submitData action called");
       commit("setAvaitStatus", true);
       axios
-          .post("Your API link", getters.getDatas)
+          .post("https://84af9562-f880-4791-9566-7cc1b2bdbc61.mock.pstmn.io/request", getters.getDatas)
           .then(response => response.data)
           .then(items => {
             console.log(items);

@@ -7,10 +7,13 @@
       <AddItem/>
     </table>
     <div class="container inline">
+      <!-- todo insert evaluation module -->
+      <EvaluationModule/>
       <div class="inline-element">
         <label for="uri-input">Endpoint URI</label>
         <input v-model="endpoint" type="text" name="uri-input" id="uri-input">
       </div>
+      
       <div class="inline-element">
         <label for="iteration-input">Number of iterations</label>
         <input v-model="iterations" type="number" name="iteration-input" id="iteration-input" min="1" max="99999999">
@@ -27,6 +30,7 @@
 import ListItem from "@/components/ListItem.vue";
 import AddItem from "@/components/AddItem.vue";
 import TitleItem from "@/components/TitleItem.vue";
+import EvaluationModule from "@/components/EvaluationModule.vue";
 
 export default {
   name: "ParamList",
@@ -34,6 +38,7 @@ export default {
     ListItem,
     AddItem,
     TitleItem,
+    EvaluationModule,
   },
   computed: {
     endpoint: {
