@@ -8,7 +8,7 @@
     </table>
     <div class="container inline">
       <!-- todo insert evaluation module -->
-      <EvaluationModule/>
+      <EvaluationModule1/>
       <!-- <div class="inline-element">
         <label for="uri-input">Endpoint URI</label>
         <input v-model="endpoint" type="text" name="uri-input" id="uri-input">
@@ -30,7 +30,7 @@
 import ListItem from "@/components/ListItem.vue";
 import AddItem from "@/components/AddItem.vue";
 import TitleItem from "@/components/TitleItem.vue";
-import EvaluationModule from "@/components/EvaluationModule.vue";
+import EvaluationModule1 from "@/components/EvaluationModule1.vue";
 
 export default {
   name: "ParamList",
@@ -38,7 +38,7 @@ export default {
     ListItem,
     AddItem,
     TitleItem,
-    EvaluationModule,
+    EvaluationModule1,
   },
   computed: {
     // endpoint: {
