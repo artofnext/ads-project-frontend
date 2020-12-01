@@ -11,36 +11,37 @@ const devMode = true;
 export default new Vuex.Store({
   state: {
     // mocked object
-    datas: [
-      {
-        name: "Alpha",
-        type: "Int",
-        from: 0,
-        to: 1000,
-        index: 0,
-      },
-      {
-        name: "Beta",
-        type: "Int",
-        from: 0,
-        to: 1000,
-        index: 1,
-      },
-      {
-        name: "Gamma",
-        type: "Bool",
-        from: 0,
-        to: 1000,
-        index: 2,
-      },
-      {
-        name: "Epsilon",
-        type: "int",
-        from: 0,
-        to: 1000,
-        index: 3,
-      },
-    ],
+    datas: [],
+    // datas: [
+    //   {
+    //     name: "Alpha",
+    //     type: "Int",
+    //     from: 0,
+    //     to: 1000,
+    //     index: 0,
+    //   },
+    //   {
+    //     name: "Beta",
+    //     type: "Int",
+    //     from: 0,
+    //     to: 1000,
+    //     index: 1,
+    //   },
+    //   {
+    //     name: "Gamma",
+    //     type: "Bool",
+    //     from: 0,
+    //     to: 1000,
+    //     index: 2,
+    //   },
+    //   {
+    //     name: "Epsilon",
+    //     type: "int",
+    //     from: 0,
+    //     to: 1000,
+    //     index: 3,
+    //   },
+    // ],
     // mocked object
     responseObj: [
       {
@@ -67,9 +68,9 @@ export default new Vuex.Store({
       "Double",
       "Int",
     ],
-    activeElement: NaN,
+    activeElgitement: NaN,
     endpoint: "",
-    iterations: 0,
+    iterations: 1,
     avaitStatus: false,
   },
   getters: {
@@ -139,11 +140,12 @@ export default new Vuex.Store({
             commit("SET_Items", items);
             commit("setAvaitStatus", false);
           })
-          .catch(() => {
+          .catch((e) => {
             console.log("Error");
             commit("SET_Items", [
               {
-                name: "Unexpected error"
+                name: "Unexpected error",
+                value: e.message
               }
             ]);
             commit("setAvaitStatus", false);
