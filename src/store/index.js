@@ -6,7 +6,7 @@ import VueAxios from 'vue-axios';
 Vue.use(Vuex);
 Vue.use(VueAxios, axios);
 
-const devMode = true;
+const devMode = false;
 
 export default new Vuex.Store({
   state: {
@@ -61,31 +61,24 @@ export default new Vuex.Store({
         value: "FUN2.TSV",
         filelink: "https....FUN2.TSV",
       },
-
-
     ],
+
     dataTypes: [
       "Double",
       "Int",
     ],
+
     endpoint: "",
     iterations: 1,
     avaitStatus: false,
     isJarUploaded: false,
-
     errorStatus: false,
     errorMessage: "",
   },
+
   getters: {
+
     getDatas: state => {
-      // if (state.datas.length < 1) {
-      //   if (devMode) console.log("No variables provided!");
-      //   return [false, "No variables provided!"];
-      // }
-      // if (state.endpoint && state.isJarUploaded) {
-      //   if (devMode) console.log("No evaluation method provided!");
-      //   return [false, "No evaluation method provided!"];
-      // }
       let objToSend = [];
       objToSend.push(
         {
@@ -103,9 +96,10 @@ export default new Vuex.Store({
       return objToSend;
     }
   },
+
   mutations: {
+
     addVar (state) {
-      //TODO
       state.datas.push({
         name: "",
         type: "",
@@ -115,8 +109,8 @@ export default new Vuex.Store({
       });
       if (devMode) console.log("New element added");
     },
+
     removeVar (state, index) {
-      //TODO
       state.datas.splice(index, 1);
       if (devMode) console.log("Element " + index + " deleted");
     },
@@ -161,26 +155,25 @@ export default new Vuex.Store({
     submitData ({ commit, getters }) {
       if (devMode) console.log("submitData action called");
 
-        commit("setAvaitStatus", true);
-        axios
-          .post("http://localhost/request", getters.getDatas)
-          .then(response => response.data)
-          .then(items => {
-            if (devMode) console.log(items);
-            commit("SET_Items", items);
-            commit("setAvaitStatus", false);
-          })
-          .catch((e) => {
-            if (devMode) console.log("Request Error");
-            commit("SET_Items", [
-              {
-                name: "Unexpected error",
-                value: e.message
-              }
-            ]);
-            commit("setAvaitStatus", false);
-          });
-      
+      commit("setAvaitStatus", true);
+      axios
+        .post("http://localhost/request", getters.getDatas)
+        .then(response => response.data)
+        .then(items => {
+          if (devMode) console.log(items);
+          commit("SET_Items", items);
+          commit("setAvaitStatus", false);
+        })
+        .catch((e) => {
+          if (devMode) console.log("Request Error");
+          commit("SET_Items", [
+            {
+              name: "Unexpected error",
+              value: e.message
+            }
+          ]);
+          commit("setAvaitStatus", false);
+        });
     }
   },
   modules: {}

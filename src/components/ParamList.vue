@@ -10,13 +10,7 @@
       <p class="error-message">{{ errorMessage }}</p>
     </div>
     <div class="container inline">
-      <!-- todo insert evaluation module -->
-      <EvaluationModule2/>
-      <!-- <div class="inline-element">
-        <label for="uri-input">Endpoint URI</label>
-        <input v-model="endpoint" type="text" name="uri-input" id="uri-input">
-      </div> -->
-      
+      <EvaluationModule2/>     
       <div class="inline-element">
         <label for="iteration-input">Number of iterations</label>
         <input v-model="iterations" type="number" name="iteration-input" id="iteration-input" min="1" max="99999999">
@@ -43,46 +37,37 @@ export default {
     TitleItem,
     EvaluationModule2,
   },
+
   computed: {
-    // endpoint: {
-    //   get () {
-    //     return this.$store.state.endpoint;
-    //   },
-    //   set (value) {
-    //     this.$store.commit('updateEndpoint', value);
-    //     console.log(this.$store.state.endpoint);
-    //   }
-    // },
+
     iterations: {
+
       get () {
         return this.$store.state.iterations;
       },
+
       set (value) {
         this.$store.commit('updateIterations', value);
-        console.log(this.$store.state.iterations);
+        if (this.$store.devMode) console.log(this.$store.state.iterations);
       }
     },
     
-    counter: {
-      get () {
-        return this.$store.state.count;
-      },
-      set (value) {
-        this.$store.commit('updateCount', value);
-        console.log(this.$store.state.count);
-      }
-    },
     items: {
+
       get () {
         return this.$store.state.datas;
       }
     },
+
     error: {
+
       get () {
         return this.$store.state.errorStatus;
       }
     },
+
     errorMessage: {
+
       get () {
         return this.$store.state.errorMessage;
       }
@@ -91,9 +76,10 @@ export default {
 
   props: {
     msg: String,
-    // counter: this.$store.state.count
   },
+
   methods: {
+
     chekout() {
       this.$store.commit('setErrorStatus', false);
       if (this.$store.state.datas.length < 1) {
@@ -108,6 +94,7 @@ export default {
       }
       if (this.$store.devMode) console.log("Checkout done");
     },
+
     submitData() {
       this.chekout();
       if (!this.$store.state.errorStatus) {
@@ -121,6 +108,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+
 .container {
   margin: 20px auto;
   max-width: 1000px;
@@ -132,10 +120,6 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  &-element {
-    // margin: 10px;
-  }
 }
 
 .submit-button {
@@ -159,7 +143,7 @@ export default {
 }
 
 .error-message {
-  color: #E1E1E1;
+  color: white;
   background-color: #B10000;
   text-align: center;
   padding: 10px 0;
@@ -173,7 +157,6 @@ input {
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  // width: 100%;
 }
 
 tr:nth-child(even) {
@@ -187,10 +170,12 @@ tr:nth-child(odd) {
 h3 {
   margin: 40px 0 0;
 }
+
 ul {
   list-style-type: none;
   padding: 0;
 }
+
 li {
   display: inline-block;
   margin: 0 10px;

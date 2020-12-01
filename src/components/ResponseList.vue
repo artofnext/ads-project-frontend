@@ -20,10 +20,13 @@
 import ResultListItem from "@/components/ResultListItem.vue";
 
 export default {
+
   name: "ResultList",
+
   components: {
     ResultListItem,
   },
+
   computed: {   
     items: {
       get () {
@@ -34,16 +37,13 @@ export default {
 
   props: {
     msg: String,
-    // counter: this.$store.state.count
   },
-  methods: {
-
-  }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+
 .container {
   margin: 20px auto;
   max-width: 1000px;
@@ -57,7 +57,6 @@ export default {
   align-items: center;
 
   &-element {
-    // margin: 10px;
     justify-self: end;
   }
 }
@@ -91,7 +90,6 @@ input {
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  // width: 100%;
 }
 
 tr:nth-child(even) {

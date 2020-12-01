@@ -29,11 +29,7 @@
             accept=".jar"
             v-on:change="handleFileUpload"
           />
-          <!-- <label for="file">Choose File</label> -->
           <button class="button" v-on:click="submitFile">Upload</button>
-
-          <!-- <span>{{ jarUploaded }}</span> -->
-
         </div>
       </div>
     </div>
@@ -74,12 +70,12 @@ export default {
           },
         })
         .then(function () {
-          console.log("SUCCESS!!");
+          if (this.$store.devMode) console.log("SUCCESS!!");
           self.jarUploaded = true;
 
         })
         .catch(function () {
-          console.log("FAILURE!!");
+          if (this.$store.devMode) console.log("FAILURE!!");
           self.jarUploaded = false;
         });
     },
@@ -107,7 +103,7 @@ export default {
       },
       set(value) {
         this.$store.commit("updateEndpoint", value);
-        console.log(this.$store.state.endpoint);
+        if (this.$store.devMode) console.log(this.$store.state.endpoint);
       },
     },
   },

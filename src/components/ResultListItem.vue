@@ -12,29 +12,28 @@
 
 <script>
 export default {
+
   name: "ListItem",
+
   computed: {
+
     dataObj: {
-      // Bad practice: mutate object by reference
+
       get() {
         return this.$store.state.responseObj[this.index];
       },
     },
   },
+
   props: {
+
     index: Number,
   },
-  methods: {},
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.list-item {
-  // display: block;
-  // border: solid 1px black;
-  // padding: 10px;
-}
 
 td {
   border: 1px solid #dddddd;
