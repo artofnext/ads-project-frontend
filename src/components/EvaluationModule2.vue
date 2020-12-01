@@ -111,27 +111,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
 .inline {
-  // display: flex;
-  // justify-content: space-between;
   align-items: center;
-
-  &-element {
-    // margin: 10px;
-  }
-
-  // .inputfile {
-  //   width: 0.1px;
-  //   height: 0.1px;
-  //   opacity: 0;
-  //   overflow: hidden;
-  //   position: absolute;
-  //   z-index: -1;
-  // }
 
   .inputfile + label {
     font-size: 1em;
-    // font-weight: 700;
     color: #222222;
     background-color: white;
     display: inline-block;
@@ -146,7 +131,6 @@ export default {
   }
 
   .button {
-    // width: 70px;
     margin: 0 10px;
     padding: 5px 10px;
     background-color: white;
