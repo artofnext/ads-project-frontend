@@ -6,6 +6,9 @@
       <ListItem  v-for="(item, index) in items" v-bind:key="index" v-bind:index='index'/>
       <AddItem/>
     </table>
+    <div v-if="error" class="container">
+      <p class="error-message">{{ errorMessage }}</p>
+    </div>
     <div class="container inline">
       <!-- todo insert evaluation module -->
       <EvaluationModule2/>
@@ -73,6 +76,16 @@ export default {
       get () {
         return this.$store.state.datas;
       }
+    },
+    error: {
+      get () {
+        return this.$store.state.errorStatus;
+      }
+    },
+    errorMessage: {
+      get () {
+        return this.$store.state.errorMessage;
+      }
     }
   },
 
@@ -81,9 +94,26 @@ export default {
     // counter: this.$store.state.count
   },
   methods: {
+    chekout() {
+      this.$store.commit('setErrorStatus', false);
+      if (this.$store.state.datas.length < 1) {
+        if (this.$store.devMode) console.log("No variables provided!");
+        this.$store.commit('setErrorStatus', true);
+        this.$store.commit('setErrorMessage', "No variables provided!");
+      }
+      if (!this.$store.state.endpoint && !this.$store.state.isJarUploaded) {
+        if (this.$store.devMode) console.log("No evaluation method provided!");
+        this.$store.commit('setErrorStatus', true);
+        this.$store.commit('setErrorMessage', "No evaluation method provided!");
+      }
+      if (this.$store.devMode) console.log("Checkout done");
+    },
     submitData() {
-      this.$router.push('Result');
-      this.$store.dispatch('submitData');
+      this.chekout();
+      if (!this.$store.state.errorStatus) {
+        this.$router.push('Result');
+        this.$store.dispatch('submitData');
+      }
     },
   }
 };
@@ -126,6 +156,13 @@ export default {
     background-color: #B10000;
     color: white;
   }
+}
+
+.error-message {
+  color: #E1E1E1;
+  background-color: #B10000;
+  text-align: center;
+  padding: 10px 0;
 }
 
 input {

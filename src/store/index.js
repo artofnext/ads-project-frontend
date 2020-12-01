@@ -72,11 +72,35 @@ export default new Vuex.Store({
     iterations: 1,
     avaitStatus: false,
     isJarUploaded: false,
+
+    errorStatus: false,
+    errorMessage: "",
   },
   getters: {
-    // todo validate and add all data to sending object
     getDatas: state => {
-      return state.datas;
+      // if (state.datas.length < 1) {
+      //   if (devMode) console.log("No variables provided!");
+      //   return [false, "No variables provided!"];
+      // }
+      // if (state.endpoint && state.isJarUploaded) {
+      //   if (devMode) console.log("No evaluation method provided!");
+      //   return [false, "No evaluation method provided!"];
+      // }
+      let objToSend = [];
+      objToSend.push(
+        {
+          "variables": state.datas,
+        },
+        {
+          "iterations": state.iterations,
+        },
+      );
+      if (state.endpoint) objToSend.push(
+        {
+          "endpoint": state.endpoint,
+        }
+      );
+      return objToSend;
     }
   },
   mutations: {
@@ -119,27 +143,35 @@ export default new Vuex.Store({
       state.isJarUploaded = value;
       if (devMode) console.log("isJarUploaded updated: " + value);
     },
-  },
-  actions: {
-    
-    submitData1 ({ commit }) {
-      //commit("SET_Items", this.responseObj);
-      commit("setAvaitStatus", false);
+
+    setErrorStatus (state, status) {
+      state.errorStatus = status;
+      if (devMode) console.log("Error Status updated: " + status);
     },
-    // todo
+    
+    setErrorMessage (state, message) {
+      state.errorMessage = message;
+      if (devMode) console.log("Error Message updated: " + message);
+    },
+
+  },
+
+  actions: {
+
     submitData ({ commit, getters }) {
-      console.log("submitData action called");
-      commit("setAvaitStatus", true);
-      axios
+      if (devMode) console.log("submitData action called");
+
+        commit("setAvaitStatus", true);
+        axios
           .post("http://localhost/request", getters.getDatas)
           .then(response => response.data)
           .then(items => {
-            console.log(items);
+            if (devMode) console.log(items);
             commit("SET_Items", items);
             commit("setAvaitStatus", false);
           })
           .catch((e) => {
-            console.log("Error");
+            if (devMode) console.log("Request Error");
             commit("SET_Items", [
               {
                 name: "Unexpected error",
