@@ -144,8 +144,13 @@ export default new Vuex.Store({
     },
     
     setErrorMessage (state, message) {
-      state.errorMessage = message;
+      state.errorMessage += message;
       if (devMode) console.log("Error Message updated: " + message);
+    },
+
+    clearErrorMessage (state) {
+      state.errorMessage = "";
+      if (devMode) console.log("Error Message cleared: ");
     },
 
   },

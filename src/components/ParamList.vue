@@ -82,15 +82,21 @@ export default {
 
     chekout() {
       this.$store.commit('setErrorStatus', false);
+      this.$store.commit('clearErrorMessage');
       if (this.$store.state.datas.length < 1) {
         if (this.$store.devMode) console.log("No variables provided!");
         this.$store.commit('setErrorStatus', true);
-        this.$store.commit('setErrorMessage', "No variables provided!");
+        this.$store.commit('setErrorMessage', "No variables provided! ");
       }
       if (!this.$store.state.endpoint && !this.$store.state.isJarUploaded) {
         if (this.$store.devMode) console.log("No evaluation method provided!");
         this.$store.commit('setErrorStatus', true);
-        this.$store.commit('setErrorMessage', "No evaluation method provided!");
+        this.$store.commit('setErrorMessage', "No evaluation method provided! ");
+      }
+        if (this.$store.state.datas.length > 10) {
+        if (this.$store.devMode) console.log("Too many variables!");
+        this.$store.commit('setErrorStatus', true);
+        this.$store.commit('setErrorMessage', "Too many variables! ");
       }
       if (this.$store.devMode) console.log("Checkout done");
     },
