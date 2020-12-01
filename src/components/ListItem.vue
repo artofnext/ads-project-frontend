@@ -1,5 +1,5 @@
 <template>
-  <tr @click="activateElement" class="list-item">
+  <tr class="list-item">
       <td>{{ index + 1 }}</td>
       <td><input placeholder="Type var name here" v-model="dataObj.name" class="name-input"></td>
       <td>
@@ -44,9 +44,7 @@ export default {
       this.$store.commit('removeVar', this.index);
       console.log(this.$store.state.count);
     },
-    activateElement() {
-        this.$store.commit('updateActiveElement', this.index);
-    }
+
   }
 };
 </script>

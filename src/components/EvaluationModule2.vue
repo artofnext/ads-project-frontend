@@ -31,6 +31,9 @@
           />
           <!-- <label for="file">Choose File</label> -->
           <button class="button" v-on:click="submitFile">Upload</button>
+
+          <!-- <span>{{ jarUploaded }}</span> -->
+
         </div>
       </div>
     </div>
@@ -60,6 +63,7 @@ export default {
       this.file = this.$refs.file.files[0];
     },
     submitFile() {
+      let self = this
       let formData = new FormData();
       formData.append("file", this.file);
 //TODO move all axios requests to store
@@ -71,19 +75,15 @@ export default {
         })
         .then(function () {
           console.log("SUCCESS!!");
+          self.jarUploaded = true;
+
         })
         .catch(function () {
           console.log("FAILURE!!");
+          self.jarUploaded = false;
         });
     },
 
-    thumbUrl(file) {
-      return file.myThumbUrlProperty;
-    },
-    onFileChange(file) {
-      // Handle files like:
-      this.fileUploaded = file;
-    },
     toggleBtn() {
       if (this.selectedOption == "uri") {
         this.selectedOption = "jar";
@@ -93,6 +93,14 @@ export default {
     },
   },
   computed: {
+    jarUploaded: {
+      get() {
+        return this.$store.state.isJarUploaded;
+      },
+      set(value) {
+        this.$store.commit('setJarUploaded', value);
+      },
+    },
     endpoint: {
       get() {
         return this.$store.state.endpoint;

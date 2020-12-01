@@ -68,10 +68,10 @@ export default new Vuex.Store({
       "Double",
       "Int",
     ],
-    activeElgitement: NaN,
     endpoint: "",
     iterations: 1,
     avaitStatus: false,
+    isJarUploaded: false,
   },
   getters: {
     // todo validate and add all data to sending object
@@ -89,18 +89,12 @@ export default new Vuex.Store({
         to: 10,
         index: state.datas.length,
       });
-      state.activeElement = state.datas.length - 1;
       if (devMode) console.log("New element added");
     },
     removeVar (state, index) {
       //TODO
       state.datas.splice(index, 1);
       if (devMode) console.log("Element " + index + " deleted");
-    },
-
-    updateActiveElement (state, index) {
-      state.activeElement = index;
-      if (devMode) console.log("Active Element: " + index);
     },
 
     updateEndpoint (state, value) {
@@ -120,9 +114,13 @@ export default new Vuex.Store({
     setAvaitStatus (state, status) {
       state.avaitStatus = status;
     },
+
+    setJarUploaded (state, value) {
+      state.isJarUploaded = value;
+      if (devMode) console.log("isJarUploaded updated: " + value);
+    },
   },
   actions: {
-    
     
     submitData1 ({ commit }) {
       //commit("SET_Items", this.responseObj);
@@ -133,7 +131,7 @@ export default new Vuex.Store({
       console.log("submitData action called");
       commit("setAvaitStatus", true);
       axios
-          .post("https://84af9562-f880-4791-9566-7cc1b2bdbc61.mock.pstmn.io/request", getters.getDatas)
+          .post("http://localhost/request", getters.getDatas)
           .then(response => response.data)
           .then(items => {
             console.log(items);
