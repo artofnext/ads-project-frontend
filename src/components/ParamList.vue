@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1>SGIA - Sistema de Gestão Inteligente de Algoritmos</h1>
+    <h3>{{ msg }}</h3>
     <table class="container">
       <TitleItem/>
       <ListItem  v-for="(item, index) in items" v-bind:key="index" v-bind:index='index'/>

@@ -6,7 +6,7 @@ import VueAxios from 'vue-axios';
 Vue.use(Vuex);
 Vue.use(VueAxios, axios);
 
-const devMode = false;
+const devMode = true;
 
 export default new Vuex.Store({
   state: {
@@ -162,7 +162,7 @@ export default new Vuex.Store({
 
       commit("setAvaitStatus", true);
       axios
-        .post("http://localhost/request", getters.getDatas)
+        .post("http://localhost:8080/request", getters.getDatas)
         .then(response => response.data)
         .then(items => {
           if (devMode) console.log(items);
